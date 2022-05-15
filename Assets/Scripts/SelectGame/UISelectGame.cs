@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UISelectGame : MonoBehaviour
 {
@@ -13,18 +14,18 @@ public class UISelectGame : MonoBehaviour
 
     public void OnClickEasy()
     {
-        Debug.Log("EASY");
+        SceneManager.LoadScene("MiniGame_Card");
 
     }
 
     public void OnClickNormal()
     {
-        Debug.Log("EASY");
+        SceneManager.LoadScene("MiniGame_Order");
 
     }
 
     public void OnClickHard()
     {
-        Debug.Log("EASY");
-     }
+        SceneManager.LoadScene("MiniGame_QR");
+    }
 }
