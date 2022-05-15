@@ -3,25 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIMiniGame_QR : MonoBehaviour
+public class UIMiniGame_QR : UIMiniGame_Base
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public void OnClickSplash()
-    {
-        // GameStart
-        
-    }
-
-    public void OnClickHome()
-    {
-        SceneManager.LoadScene("SelectGame");
-
-    }
 
 }
