@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class UIMiniGame_Card : UIMiniGame_Base
 {
     public Card[] cards;
+    GameController_Card gameController_Card;
 
-
+    private void Awake()
+    {
+        gameController_Card = gameController as GameController_Card;
+    }
     public void ResetCards()
     {
         // 반복문을 이용한 카드 네장 초기화
@@ -27,8 +31,6 @@ public class UIMiniGame_Card : UIMiniGame_Base
 
     public void ShuffleCards(int answer, float shuffleDuration)
     {
-        var gameController_Card = gameController as GameController_Card;
-
         // 반복문을 이용한 카드 네장 뒤집기
         for (int i = cards.Length - 1; i >= 0; i--)
         {
@@ -43,5 +45,9 @@ public class UIMiniGame_Card : UIMiniGame_Base
         }
     }
 
+    public void OnClickRestart()
+    {
+        gameController_Card.StartGame();
+    }
 
 }
