@@ -1,17 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIMiniGame_Card : UIMiniGame_Base
 {
     public Card[] cards;
+    public Slider sliderRound;
+    public TextMeshProUGUI txtScore;
+
     GameController_Card gameController_Card;
+
 
     private void Awake()
     {
         gameController_Card = gameController as GameController_Card;
     }
+
+    public override void InitUI()
+    {
+        base.InitUI();
+        UpdateScore(0);
+        UpdateRound(0);
+    }
+    
     public void ResetCards()
     {
         // 반복문을 이용한 카드 네장 초기화
@@ -50,4 +64,19 @@ public class UIMiniGame_Card : UIMiniGame_Base
         gameController_Card.StartGame();
     }
 
+    public void UpdateRound(int value = -1)
+    {
+        if (value != -1)
+            sliderRound.value = value;
+        else
+            sliderRound.value = gameController_Card.GetSliderStepValue();
+    }
+
+    public void UpdateScore(int value = -1)
+    {
+        if (value != -1)
+            txtScore.text = value.ToString();
+        else
+            txtScore.text = gameController_Card.score.ToString();
+    }
 }

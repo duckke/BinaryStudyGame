@@ -28,4 +28,10 @@ public class GameController_Base : MonoBehaviour
         // 게임 시작
 
     }
+
+    public virtual void ClearGame()
+    {
+        // 게임 끝
+
+    }
 }

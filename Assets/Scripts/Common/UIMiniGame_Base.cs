@@ -10,6 +10,8 @@ public class UIMiniGame_Base : MonoBehaviour
     public GameObject goGameMain;
     public GameObject goGameDescription;
     public GameObject goInGame;
+    public GameObject goClearGame;
+    public GameObject goHome;
 
     // ¹®Á¦ÆÇ
     public GameObject goQuestionBoard;
@@ -20,6 +22,8 @@ public class UIMiniGame_Base : MonoBehaviour
         goGameMain.SetActive(true);
         goGameDescription.SetActive(false);
         goInGame.SetActive(false);
+        goClearGame.SetActive(false);
+        goHome.SetActive(true);
         ResetQuestionBoard();
     }
 
@@ -28,6 +32,8 @@ public class UIMiniGame_Base : MonoBehaviour
         goGameMain.SetActive(false);
         goGameDescription.SetActive(true);
         goInGame.SetActive(false);
+        goClearGame.SetActive(false);
+        goHome.SetActive(true);
 
     }
 
@@ -36,9 +42,10 @@ public class UIMiniGame_Base : MonoBehaviour
         goGameMain.SetActive(false);
         goGameDescription.SetActive(false);
         goInGame.SetActive(true);
+        goClearGame.SetActive(false);
+        goHome.SetActive(true);
 
         gameController.StartGame();
-
     }
 
     public virtual void ResetQuestionBoard()
@@ -56,6 +63,15 @@ public class UIMiniGame_Base : MonoBehaviour
     {
         SceneManager.LoadScene("SelectGame");
 
+    }
+
+    public virtual void ClearGame()
+    {
+        goGameMain.SetActive(false);
+        goGameDescription.SetActive(false);
+        goInGame.SetActive(false);
+        goClearGame.SetActive(true);
+        goHome.SetActive(false);
     }
 
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameController_Card : GameController_Base
 {
-    const int MAX_ROUND = 3;
-    const int QUESTION_COUNT = 2;
+    public const int MAX_ROUND = 3;
+    public const int QUESTION_COUNT = 2;
 
     bool[] questionSolved = new bool[QUESTION_COUNT];
     float SHUFFLE_DURATION = 1f;
@@ -21,9 +21,10 @@ public class GameController_Card : GameController_Base
     public override void InitGame()
     {
         base.InitGame();
-
+        
         roundIdx = 0;
         answer = 0;
+        score = 0;
         uiMiniGame_Card.InitUI();
     }
 
@@ -109,6 +110,7 @@ public class GameController_Card : GameController_Base
         // 문제 반복
         for (int i = 0; i < uiMiniGame_Card.questions.Length; i++)
         {
+            uiMiniGame_Card.UpdateRound();
             uiMiniGame_Card.questions[i].gameObject.SetActive(true);
             uiMiniGame_Card.questions[i].SetAnswer(answer);
 
@@ -116,18 +118,38 @@ public class GameController_Card : GameController_Base
             while (uiMiniGame_Card.questions[i].isAnswer == false)
                 yield return null;
 
+            score += 10;
+            uiMiniGame_Card.UpdateScore();
             uiMiniGame_Card.questions[i].gameObject.SetActive(false);
+            questionIdx++;
         }
 
         // 다 맞췄음
 
+        // 다음라운드!
 
-        // 다음라운드가 잇으면? 다음라운드 시작
-        StartGame();
+        // 현재가 마지막 라운드면?
+        roundIdx++;
+        if (roundIdx >= MAX_ROUND)
+        {
+            // 다음라운드가 없으면? 초기화면으로 이동
+            ClearGame();
+        }
+        else
+        {
+            // 다음라운드가 잇으면? 다음라운드 시작
+            StartGame();
+        }
+    }
 
+    public override void ClearGame()
+    {
+        base.ClearGame();
+        uiMiniGame_Card.ClearGame();
+    }
 
-        // 다음라운드가 없으면? 초기화면으로 이동
-
-
+    public int GetSliderStepValue()
+    {
+        return roundIdx * QUESTION_COUNT + questionIdx + 1;
     }
 }
