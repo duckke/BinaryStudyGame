@@ -34,6 +34,7 @@ public class UIMiniGame_Card : UIMiniGame_Base
             cards[i].ResetCard();
         }
     }
+
     public void SetValues(CardShape shape)
     {
         // 반복문을 이용한 카드 모양과 자리에 해당하는 리소스 세팅

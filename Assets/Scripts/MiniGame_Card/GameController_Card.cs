@@ -16,7 +16,7 @@ public class GameController_Card : GameController_Base
     CardShape shape = CardShape.Spade;
 
     Coroutine coCardShuffle = null;
-    Coroutine coCardAnswers = null;
+    Coroutine coCardQuestion = null;
 
     public override void InitGame()
     {
@@ -32,8 +32,8 @@ public class GameController_Card : GameController_Base
     {
         if (coCardShuffle != null)
             StopCoroutine(coCardShuffle);
-        if (coCardAnswers != null)
-            StopCoroutine(coCardAnswers);
+        if (coCardQuestion != null)
+            StopCoroutine(coCardQuestion);
 
     }
 
@@ -95,7 +95,7 @@ public class GameController_Card : GameController_Base
         yield return new WaitForSeconds(0.5f);
 
         // 문제 시작
-        coCardAnswers = StartCoroutine("CardAnswers");
+        coCardQuestion = StartCoroutine("CardAnswers");
     }
 
     IEnumerator CardAnswers()
