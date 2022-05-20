@@ -6,8 +6,6 @@ using TMPro;
 
 public class Question_Base : MonoBehaviour
 {
-    protected GameObject[] goShakeTarget;
-
     protected int answer = 0;
     protected int curAnswer = 0;
     public bool isAnswer = false;
@@ -26,6 +24,15 @@ public class Question_Base : MonoBehaviour
         this.isAnswer = false;        
     }
 
+    public virtual void SetAnswerMent(string ment)
+    {
+
+    }
+
+    public virtual void SetGridCount(int gridCount)
+    {
+
+    }
 
     public virtual void OnClickCheckAnswer()
     {
