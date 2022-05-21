@@ -67,11 +67,13 @@ public class UIMiniGame_Base : MonoBehaviour
 
     public virtual void ClearGame()
     {
-        goGameMain.SetActive(false);
-        goGameDescription.SetActive(false);
-        goInGame.SetActive(false);
-        goClearGame.SetActive(true);
-        goHome.SetActive(false);
+        SceneManager.LoadScene("SelectGame");
+
+        //goGameMain.SetActive(false);
+        //goGameDescription.SetActive(false);
+        //goInGame.SetActive(false);
+        //goClearGame.SetActive(true);
+        //goHome.SetActive(false);
     }
 
 }
