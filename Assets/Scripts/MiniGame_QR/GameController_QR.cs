@@ -9,33 +9,35 @@ public class GameController_QR : GameController_Base
 
     bool[] questionSolved = new bool[QUESTION_COUNT];
 
-    public UIMiniGame_Order uiMiniGame_Order;
-    public OrderBoard orderBoard;
+    public UIMiniGame_QR uiMiniGame_QR;
 
-    public int answer = 0;
+    public int[] answers = new int[4];
     public int roundIdx = 0;
     public int questionIdx = 0;
 
-    Coroutine coOrderQuestion = null;
+    Coroutine coQrQuestion = null;
 
     public override void InitGame()
     {
         base.InitGame();
 
         roundIdx = 0;
-        answer = 0;
+        for (int i = 0; i < answers.Length; i++)
+            answers[i] = 0;
+
         score = 0;
-        uiMiniGame_Order.InitUI();
+        uiMiniGame_QR.InitUI();
     }
 
     public override void ResetGame()
     {
         base.ResetGame();
 
-        uiMiniGame_Order.ResetQuestionBoard();
+        uiMiniGame_QR.ResetQuestionBoard();
         ClearCoroutines();
 
-        answer = 0;
+        for (int i = 0; i < answers.Length; i++)
+            answers[i] = 0;
         questionIdx = 0;
         for (int i = 0; i < questionSolved.Length; i++)
             questionSolved[i] = false;
@@ -47,12 +49,11 @@ public class GameController_QR : GameController_Base
         base.StartGame();
 
         // 문제 시작
-        orderBoard.gameObject.SetActive(false);
-        coOrderQuestion = StartCoroutine("OrderAnswers");
+        coQrQuestion = StartCoroutine("QRQuestion");
     }
 
 
-    IEnumerator OrderAnswers()
+    IEnumerator QRQuestion()
     {
         // 1초 대기
         yield return new WaitForSeconds(0.3f);
@@ -67,26 +68,26 @@ public class GameController_QR : GameController_Base
         // 문제 반복
         for (int i = 0; i < QUESTION_COUNT; i++)
         {
-            answer = 0;
-            int gridCount = 0;
-            // 문제순서별 값의 최대값 구하기
-            switch (i)
+            for (int j = 0; j < answers.Length; j++)
+                answers[j] = 0;
+
+            for (int j = 0; j < 4; j++)
             {
-                case 0:
-                    gridCount = 2;
-                    break;
-                case 1:
-                    gridCount = 3;
-                    break;
-                case 2:
-                    gridCount = 4;
-                    break;
-                case 3:
-                    gridCount = 4;
-                    break;
+                while (answers[j] == 0)
+                {
+                    int tmpAnswer = Random.Range(1, 32); // 1~31까지 랜덤
+                    if (j == 0 || answers[j - 1] != tmpAnswer)
+                    {
+                        answers[j] = tmpAnswer;
+                    }
+                }
             }
-            answer = Random.Range(0, (int)Mathf.Pow(2, gridCount));
-            Debug.Log("question " + (questionIdx + 1) + " - answer is " + answer);
+
+            Debug.Log("question " + (questionIdx + 1) + " - answer is " + 
+                answers[0] + ", " +
+                answers[1] + ", " +
+                answers[2] + ", " +
+                answers[3]);
 
 
             // 매 문제마다
@@ -96,24 +97,21 @@ public class GameController_QR : GameController_Base
             // 문제시작
             // 문제판 열기
 
-            orderBoard.gameObject.SetActive(true);
-            uiMiniGame_Order.goQuestionBoard.SetActive(true);
-            string answerMent = orderBoard.SetMenu(i, answer);
+            uiMiniGame_QR.goQuestionBoard.SetActive(true);
 
-            uiMiniGame_Order.UpdateRound();
-            uiMiniGame_Order.questions[0].gameObject.SetActive(true);
-            uiMiniGame_Order.questions[0].ResetUI();
-            uiMiniGame_Order.questions[0].SetGridCount(gridCount);
-            uiMiniGame_Order.questions[0].SetAnswer(answer);
-            uiMiniGame_Order.questions[0].SetAnswerMent(answerMent);
+            uiMiniGame_QR.UpdateRound();
+            uiMiniGame_QR.UpdateMenuTarget(answers);
+            uiMiniGame_QR.questions[0].gameObject.SetActive(true);
+            uiMiniGame_QR.questions[0].ResetUI();
+            uiMiniGame_QR.questions[0].SetAnswers(answers);
 
 
             // 문제 맞출때까지 대기
-            while (uiMiniGame_Order.questions[0].isAnswer == false)
+            while (uiMiniGame_QR.questions[0].isAnswer == false)
                 yield return null;
 
             score += 10;
-            uiMiniGame_Order.UpdateScore();
+            uiMiniGame_QR.UpdateScore();
             questionIdx++;
         }
 
@@ -138,15 +136,15 @@ public class GameController_QR : GameController_Base
 
     private void ClearCoroutines()
     {
-        if (coOrderQuestion != null)
-            StopCoroutine(coOrderQuestion);
+        if (coQrQuestion != null)
+            StopCoroutine(coQrQuestion);
 
     }
 
     public override void ClearGame()
     {
         base.ClearGame();
-        uiMiniGame_Order.ClearGame();
+        uiMiniGame_QR.ClearGame();
     }
 
     public int GetSliderStepValue()

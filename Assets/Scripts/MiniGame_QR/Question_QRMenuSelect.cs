@@ -9,16 +9,15 @@ public class Question_QRMenuSelect : Question_Base
 {
     const int row = 4;
     const int col = 5;
-    public Text[] txtAnswerTargetNum = new Text[row];
-    public Image[] imgAnswerTargetIcon = new Image[row];
-    public GameObject[,] goGridObj = new GameObject[row, col];
-    public Button[,] btns = new Button[row, col];
-    public Image[,] imgSelected = new Image[row, col];
+    private Text[] txtAnswerTargetNum = new Text[row];
+    private Image[] imgAnswerTargetIcon = new Image[row];
+    private GameObject[,] goGridObj = new GameObject[row, col];
+    private Button[,] btns = new Button[row, col];
+    private Image[,] imgSelected = new Image[row, col];
     //public Text txtAnswer;
 
     private void Awake()
     {
-        LinkComponents();
     }
 
     private void LinkComponents()
@@ -35,9 +34,9 @@ public class Question_QRMenuSelect : Question_Base
         {
             for (int j = 0; j < col; j++)
             {
-                goGridObj[i, j] = transform.Find(string.Format("GridAnswerBoard/GameObject ({0})", (i * row + j))).gameObject;
-                btns[i, j] = transform.Find(string.Format("GridAnswerBoard/GameObject ({0})/btnSquare ({0})", (i * row + j))).GetComponent<Button>();
-                imgSelected[i, j] = transform.Find(string.Format("GridAnswerBoard/GameObject ({0})/btnSquare ({0})/Image ({0})", (i * row + j))).GetComponent<Image>();
+                goGridObj[i, j] = transform.Find(string.Format("GridAnswerBoard/GameObject ({0})", (i * col + j))).gameObject;
+                btns[i, j] = transform.Find(string.Format("GridAnswerBoard/GameObject ({0})/btnSquare ({0})", (i * col + j))).GetComponent<Button>();
+                imgSelected[i, j] = transform.Find(string.Format("GridAnswerBoard/GameObject ({0})/btnSquare ({0})/Image ({0})", (i * col + j))).GetComponent<Image>();
             }
         }
     }
@@ -46,6 +45,7 @@ public class Question_QRMenuSelect : Question_Base
     {
         base.ResetUI();
 
+        LinkComponents();
         for (int i = 0; i < row; i++)
         {
             for (int j = 0; j < col; j++)
@@ -89,16 +89,16 @@ public class Question_QRMenuSelect : Question_Base
     {
         base.CalcMyAnswer();
 
-        int tmp = 0;
         for (int i = 0; i < row; i++)
         {
+            int tmp = 0;
             for (int j = 0; j < col; j++)
             {                
                 int value = 0;
                 if (imgSelected[i, j].gameObject.activeSelf)
                     value = 1;
                 if (value == 1)
-                    tmp += (int)Mathf.Pow(2, i * value);
+                    tmp += (int)Mathf.Pow(2, j * value);
             }
             curAnswers[i] = tmp;
         }
@@ -112,7 +112,7 @@ public class Question_QRMenuSelect : Question_Base
         for (int i = 0; i < row; i++)
         {
             int tmpAnswer = answers[i];
-            for (int j = col - 1; j >= 0; j++)
+            for (int j = col - 1; j >= 0; j--)
             {
                 int posValue = (int)Mathf.Pow(2, j);
                 bool posAnswer = false;
@@ -134,8 +134,10 @@ public class Question_QRMenuSelect : Question_Base
 
     }
 
-    //public void OnClickButton(int idx)
-    //{
-    //    imgSelected[idx].gameObject.SetActive(!imgSelected[idx].gameObject.activeSelf);
-    //}
+    public void OnClickButton(int idx)
+    {
+        int i = idx / col;
+        int j = idx % col;
+        imgSelected[i, j].gameObject.SetActive(!imgSelected[i, j].gameObject.activeSelf);
+    }
 }
