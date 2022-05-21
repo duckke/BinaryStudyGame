@@ -7,7 +7,9 @@ using TMPro;
 public class Question_Base : MonoBehaviour
 {
     protected int answer = 0;
+    protected int[] answers;
     protected int curAnswer = 0;
+    protected int[] curAnswers;
     public bool isAnswer = false;
 
     public virtual void ResetUI()
@@ -21,7 +23,12 @@ public class Question_Base : MonoBehaviour
     {
         this.answer = answer;
         this.curAnswer = 0;
-        this.isAnswer = false;        
+        this.isAnswer = false;
+    }
+
+    public virtual void SetAnswers(int[] answers)
+    {
+
     }
 
     public virtual void SetAnswerMent(string ment)

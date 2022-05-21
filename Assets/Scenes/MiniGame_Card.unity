@@ -592,7 +592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE74\uB4DC \uAC8C\uC784"
+  m_text: CLEAR!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac49c1c16f9266a4eaae3d353a7cc0f2, type: 2}
   m_sharedMaterial: {fileID: -5668862120117124272, guid: ac49c1c16f9266a4eaae3d353a7cc0f2, type: 2}
@@ -3020,8 +3020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -695}
-  m_SizeDelta: {x: 1180, y: 430}
+  m_AnchoredPosition: {x: 640, y: -515}
+  m_SizeDelta: {x: 1180, y: 310}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &330545055
 GameObject:
@@ -9436,7 +9436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 279a710953d50384aa1805b76e905a7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: adbbe73d23ce16c4da12662afbee2a3a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10178,8 +10178,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -265}
-  m_SizeDelta: {x: 1180, y: 430}
+  m_AnchoredPosition: {x: 640, y: -205}
+  m_SizeDelta: {x: 1180, y: 310}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1488128266
 MonoBehaviour:
@@ -12004,7 +12004,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1089084115}
   m_HandleRect: {fileID: 0}
@@ -12036,7 +12036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1645767531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12218,7 +12218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CLEAR
+  m_text: CLEAR!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac49c1c16f9266a4eaae3d353a7cc0f2, type: 2}
   m_sharedMaterial: {fileID: -5668862120117124272, guid: ac49c1c16f9266a4eaae3d353a7cc0f2, type: 2}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController_Order : GameController_Base
+public class GameController_QR : GameController_Base
 {
     public const int MAX_ROUND = 1;
     public const int QUESTION_COUNT = 3;

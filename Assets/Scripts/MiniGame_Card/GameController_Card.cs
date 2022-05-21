@@ -133,6 +133,7 @@ public class GameController_Card : GameController_Base
         if (roundIdx >= MAX_ROUND)
         {
             // 다음라운드가 없으면? 초기화면으로 이동
+            yield return new WaitForSeconds(0.5f);
             ClearGame();
         }
         else
