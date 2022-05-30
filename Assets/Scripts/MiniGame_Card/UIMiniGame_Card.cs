@@ -62,6 +62,7 @@ public class UIMiniGame_Card : UIMiniGame_Base
 
     public void OnClickRestart()
     {
+        AudioManager.Instance.PlayClickSound();
         gameController_Card.StartGame();
     }
 

@@ -14,18 +14,21 @@ public class UISelectGame : MonoBehaviour
 
     public void OnClickEasy()
     {
+        AudioManager.Instance.PlayClickSound();
         SceneManager.LoadScene("MiniGame_Card");
 
     }
 
     public void OnClickNormal()
     {
+        AudioManager.Instance.PlayClickSound();
         SceneManager.LoadScene("MiniGame_Order");
 
     }
 
     public void OnClickHard()
     {
+        AudioManager.Instance.PlayClickSound();
         SceneManager.LoadScene("MiniGame_QR");
     }
 }

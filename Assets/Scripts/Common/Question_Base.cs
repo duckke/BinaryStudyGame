@@ -43,6 +43,7 @@ public class Question_Base : MonoBehaviour
 
     public virtual void OnClickCheckAnswer()
     {
+        AudioManager.Instance.PlayClickSound();
         CalcMyAnswer();
 
         if (answer == curAnswer)
@@ -62,6 +63,7 @@ public class Question_Base : MonoBehaviour
 
     public virtual void ShakeWrongTargets()
     {
-        
+        AudioManager.Instance.PlaySound(SoundEnum.Fail);
+
     }
 }

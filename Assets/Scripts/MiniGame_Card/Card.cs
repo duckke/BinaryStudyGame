@@ -69,5 +69,7 @@ public class Card : MonoBehaviour
         if (direction == CardDirection.Front)
             addValue = 180f;
         rt.DOLocalRotate(new Vector3(0f, 360f * 10 + addValue, 0f), duration, RotateMode.LocalAxisAdd).SetDelay(delay);
+
+        AudioManager.Instance.PlaySound(SoundEnum.Card, delay: duration + delay);
     }
 }

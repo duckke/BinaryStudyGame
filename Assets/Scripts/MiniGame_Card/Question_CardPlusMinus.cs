@@ -61,12 +61,14 @@ public class Question_CardPlusMinus : Question_Base
 
     public void OnClickPlus(int idx)
     {
+        AudioManager.Instance.PlayClickSound();
         txtValue[idx].text = ((int)Mathf.Pow(2, idx)).ToString();
 
     }
 
     public void OnClickMinus(int idx)
     {
+        AudioManager.Instance.PlayClickSound();
         txtValue[idx].text = "0";
 
     }

@@ -67,6 +67,7 @@ public class Question_QRMenuSelect : Question_Base
 
     public override void OnClickCheckAnswer()
     {
+        AudioManager.Instance.PlayClickSound();
         //base.OnClickCheckAnswer();
 
         CalcMyAnswer();
@@ -136,6 +137,7 @@ public class Question_QRMenuSelect : Question_Base
 
     public void OnClickButton(int idx)
     {
+        AudioManager.Instance.PlayClickSound();
         int i = idx / col;
         int j = idx % col;
         imgSelected[i, j].gameObject.SetActive(!imgSelected[i, j].gameObject.activeSelf);

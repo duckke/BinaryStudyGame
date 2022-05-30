@@ -87,6 +87,7 @@ public class Question_OrderZeroOne : Question_Base
 
     public void OnClickButton(int idx)
     {
+        AudioManager.Instance.PlayClickSound();
         imgSelected[idx].gameObject.SetActive(!imgSelected[idx].gameObject.activeSelf);
     }
 }

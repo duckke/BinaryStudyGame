@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController_Base : MonoBehaviour
 {
+    public AudioManager audioManager;
     public int score = 0;
 
     private void Awake()

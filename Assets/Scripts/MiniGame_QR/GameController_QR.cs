@@ -113,6 +113,7 @@ public class GameController_QR : GameController_Base
             score += 10;
             uiMiniGame_QR.UpdateScore();
             questionIdx++;
+            AudioManager.Instance.PlaySound(SoundEnum.Success, 0.6f);
         }
 
         // 다 맞췄음
@@ -123,6 +124,7 @@ public class GameController_QR : GameController_Base
         roundIdx++;
         if (roundIdx >= MAX_ROUND)
         {
+            AudioManager.Instance.PlaySound(SoundEnum.GameClear, 0.8f);
             // 다음라운드가 없으면? 초기화면으로 이동
             yield return new WaitForSeconds(0.5f);
             ClearGame();

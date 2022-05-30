@@ -62,6 +62,7 @@ public class Question_CardZeroOne : Question_Base
 
     public void OnClickButton(int idx)
     {
+        AudioManager.Instance.PlayClickSound();
         if (txtValue[idx].text == "0")
             txtValue[idx].text = "1";
         else

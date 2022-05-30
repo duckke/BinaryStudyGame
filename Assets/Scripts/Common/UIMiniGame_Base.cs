@@ -29,6 +29,7 @@ public class UIMiniGame_Base : MonoBehaviour
 
     public virtual void OnClickGameMain()
     {
+        AudioManager.Instance.PlayClickSound();
         //goGameMain.SetActive(false);
         //goGameDescription.SetActive(true);
         //goInGame.SetActive(false);
@@ -47,6 +48,7 @@ public class UIMiniGame_Base : MonoBehaviour
 
     public virtual void OnClickGameDescription()
     {
+        AudioManager.Instance.PlayClickSound();
         goGameMain.SetActive(false);
         goGameDescription.SetActive(false);
         goInGame.SetActive(true);
@@ -69,6 +71,7 @@ public class UIMiniGame_Base : MonoBehaviour
 
     public virtual void OnClickHome()
     {
+        AudioManager.Instance.PlayClickSound();
         SceneManager.LoadScene("SelectGame");
 
     }
