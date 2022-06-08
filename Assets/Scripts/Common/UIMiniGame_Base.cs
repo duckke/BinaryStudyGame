@@ -30,20 +30,11 @@ public class UIMiniGame_Base : MonoBehaviour
     public virtual void OnClickGameMain()
     {
         AudioManager.Instance.PlayClickSound();
-        //goGameMain.SetActive(false);
-        //goGameDescription.SetActive(true);
-        //goInGame.SetActive(false);
-        //goClearGame.SetActive(false);
-        //goHome.SetActive(true);
-
-
         goGameMain.SetActive(false);
-        goGameDescription.SetActive(false);
-        goInGame.SetActive(true);
+        goGameDescription.SetActive(true);
+        goInGame.SetActive(false);
         goClearGame.SetActive(false);
         goHome.SetActive(true);
-
-        gameController.StartGame();
     }
 
     public virtual void OnClickGameDescription()
